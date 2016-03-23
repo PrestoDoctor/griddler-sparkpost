@@ -19,7 +19,20 @@ gem 'griddler-sparkpost'
 Usage
 -----
 
-* Coming Soon
+[thoughtbot](http://thoughtbot.com) has a blog post on how to use Griddler over on their blog: [Giant
+Robots](https://robots.thoughtbot.com/griddler-is-better-than-ever).
+
+That post is specific to Mailgun, so you'll need to update the references from Mailgun to SparkPost.
+
+Example:
+
+```ruby
+# config/initializers/griddler.rb
+
+Griddler.configure do |config|
+  config.email_service = :sparkpost
+end
+```
 
 More Information
 ----------------
