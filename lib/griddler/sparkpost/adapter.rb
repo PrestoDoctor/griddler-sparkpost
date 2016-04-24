@@ -16,9 +16,12 @@ module Griddler
         msg = params['_json'][0]['msys']['relay_message']
         content = msg['content']
         mail = Mail.read_from_string(content['email_rfc822'])
+        # SparkPost documentation isn't clear on friendly_from.
+        # In case there's a full email address (e.g. "Test User <test@test.com>"), strip out junk
+        clean_from = msg['friendly_from'].split('<').last.delete('>').strip
         params.merge(
           to: content['to'],
-          from: msg['friendly_from'],
+          from: clean_from,
           cc: content['cc'].nil? ? [] : content['cc'],
           subject: content['subject'],
           text: content['text'],
