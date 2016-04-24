@@ -18,7 +18,7 @@ module Griddler
         mail = Mail.read_from_string(content['email_rfc822'])
         params.merge(
           to: content['to'],
-          from: msg['msg_from'],
+          from: msg['friendly_from'],
           cc: content['cc'].nil? ? [] : content['cc'],
           subject: content['subject'],
           text: content['text'],
